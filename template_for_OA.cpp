@@ -6,6 +6,8 @@ int functiondemo(vector<int> demo, int temp){
 }
 
 int main(){
+    // s g s3 
+    // g ss s ,
     string line;
     getline(cin, line);
     stringstream ss(line);
