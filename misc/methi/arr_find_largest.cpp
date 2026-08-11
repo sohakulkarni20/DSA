@@ -36,6 +36,5 @@ int main()
     remove_duplicates(arr);
     return 0;
 }
-//iss baar hasi nahi rona agaya
-//shit
+
 
