@@ -1,6 +1,10 @@
 #include <bits/stdc++.h>
 using namespace std;
 
+int functiondemo(vector<int> demo, int temp){
+    return temp;
+}
+
 int main(){
     string line;
     getline(cin, line);
