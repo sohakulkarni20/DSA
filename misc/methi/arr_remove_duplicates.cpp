@@ -48,7 +48,6 @@ int main(){
         cout<<arr.at(i)<<"\t";
     }
 
-    //PICHLE 2 DAYS SE YEHI QUESTION KRRI THI
-    //AAJ FINALLY MILA ANSWWER
+    
     
 }

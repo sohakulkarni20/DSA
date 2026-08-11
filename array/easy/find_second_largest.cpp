@@ -30,22 +30,7 @@ void find_second_largest(vector <int> arr){
 
 }
 
-/*
-void approach2(vector <int> arr){
-    int a = 0;
-    int m = 0;
-    int *p1 = &arr[a];
-    int *p2 = &arr[m];
-    for(int i=0; i<arr.size(); i++){
-        if(arr[m+1]>arr[m]){
-            arr[m] = arr[m+1];
-        }
-        m++;
-    }
-    //this is incomplete
-    cout<<"max: "<<arr[m];
-}
-*/
+
 
 int main(){
 
@@ -68,7 +53,5 @@ int main(){
     }
     cout<<endl;
 
-    //find_second_largest(arr);
-    //approach2(arr);
 
 }
