@@ -2,17 +2,14 @@
 using namespace std;
 
 int findinsertposition(vector<int> &v, int target){
-    int low =0;
-    int high = v.size()-1;
-    if(v[high] < target) return v.size();
-    if(v[low] > target) return 0;
-    while(high >= 0 && low < v.size() && (v[low] < target || v[high] > target)){
-        if(v[high] == target) return high;
-        if(v[low] == target) return low;
-        if(v[high] > target) high--;
-        if(v[low] < target) low++;
+    if(v[0] > target) return 0;
+    if(v[v.size()-1] < target) return v.size();
+    int low = 0, high = v.size()-1;
+    while(low < high){
+        if(low<target) low++;
+        if(high > target) high--;
+        if(low == high -1) return (low, high);
     }
-    return low;
 }
 
 int main(){

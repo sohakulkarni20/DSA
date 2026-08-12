@@ -20,6 +20,7 @@ int counting(vector<int> &v, int target, int low, int high){
 
 int findlowerbound(vector<int> &v, int target, int low, int high){
     //1 2   2   2   2   2   3   4   5   6   6   6   7   8
+    if(v[0] == target) return 0;
     int mid = (low+high)/2;
     if(v[mid] > target)  return findlowerbound(v, target, low, mid);
     else if(v[mid] < target) return findlowerbound(v, target, mid, high);
@@ -30,6 +31,7 @@ int findlowerbound(vector<int> &v, int target, int low, int high){
 }
 
 int findupperbound(vector<int> &v, int target, int low, int high){
+    if(v[v.size()-1] == target) return v.size()-1;
     int mid = (low+high)/2;
     if(v[mid] > target) return findupperbound(v, target, low, mid);
     else if(v[mid] < target) return findupperbound(v, target, mid, high);
@@ -81,6 +83,6 @@ int main(){
     cout<<endl;
 
     //cout<<"Frequency of target "<<target<<" is "<<counting(v,target, 0, v.size()-1);
-    cout<<"Frequency of target "<<target<<" is "<<findfreq(v,target);
+    cout<<"Frequency of target "<<target<<" is "<<findfreq(v,target); //perfect use of binary search is here, refer this
     return 0;
 }
