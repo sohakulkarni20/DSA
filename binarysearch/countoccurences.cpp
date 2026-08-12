@@ -18,6 +18,31 @@ int counting(vector<int> &v, int target, int low, int high){
     else return (high-low)+1;
 }
 
+int findlowerbound(vector<int> &v, int target, int low, int high){
+    //1 2   2   2   2   2   3   4   5   6   6   6   7   8
+    int mid = (low+high)/2;
+    if(v[mid] > target)  return findlowerbound(v, target, low, mid);
+    else if(v[mid] < target) return findlowerbound(v, target, mid, high);
+    else {
+        if(v[mid-1] < target) return mid;
+        else  return findlowerbound(v, target, low, mid);
+    }
+}
+
+int findupperbound(vector<int> &v, int target, int low, int high){
+    int mid = (low+high)/2;
+    if(v[mid] > target) return findupperbound(v, target, low, mid);
+    else if(v[mid] < target) return findupperbound(v, target, mid, high);
+    else{
+        if(v[mid+1] > target) return mid;
+        else return findupperbound(v, target, mid, high);
+    }
+}
+
+int findfreq(vector<int> &v, int target){
+    return findupperbound(v, target, 0, v.size()-1) - findlowerbound(v, target, 0, v.size()-1) +1;
+}
+
 int approach2(vector<int> &v, int target, int low, int high){
     if(v.empty() == true || v[0] > target || v[v.size()-1] < target || low> high) return 0;
     int mid = (low+high)/2;
@@ -53,7 +78,9 @@ int main(){
     for(int i=0; i<v.size(); i++){
         cout<<v.at(i)<<" ";
     }
+    cout<<endl;
 
-    cout<<"Frequency of target "<<target<<" is "<<counting(v,target, 0, v.size()-1);
+    //cout<<"Frequency of target "<<target<<" is "<<counting(v,target, 0, v.size()-1);
+    cout<<"Frequency of target "<<target<<" is "<<findfreq(v,target);
     return 0;
 }
