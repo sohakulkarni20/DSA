@@ -6,11 +6,11 @@ int approach(vector<int> &v, int target, int low, int high){
 
     int mid = (low+high)/2;
 
-    if(v[mid] < target) return approach2(v, target, mid, high);
-    else if(v[mid] > target) return approach2(v, target, low, mid);
+    if(v[mid] < target) return approach(v, target, mid, high);
+    else if(v[mid] > target) return approach(v, target, low, mid);
     else{
         if(v[mid+1] > target || mid == v.size()-1) return mid;
-        else return approach2(v, target, mid, high);
+        else return approach(v, target, mid, high);
     }
 
     return 0;
