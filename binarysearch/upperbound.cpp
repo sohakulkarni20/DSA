@@ -2,14 +2,14 @@
 using namespace std;
 
 int approach(vector<int> &v, int target, int low, int high){
-    if(v.size() == 0 || v[0] > target || v[v.size()-1] < target) return -1;
+    if(v.size() == 0 || v[0] > target || v[v.size()-1] < target || low > high) return -1;
 
     int mid = (low+high)/2;
 
-    if(v[mid] < target) return approach(v, target, mid, high);
-    else if(v[mid] > target) return approach(v, target, low, mid);
+    if(v[mid] < target) return approach(v, target, mid+1, high);
+    else if(v[mid] > target) return approach(v, target, low, mid-1);
     else{
-        if(v[mid+1] > target || mid == v.size()-1) return mid;
+        if(mid == v.size()-1 || v[mid+1] > target ) return mid;
         else return approach(v, target, mid, high);
     }
 
