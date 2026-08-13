@@ -2,15 +2,17 @@
 using namespace std;
 
 int findlowerbound(int high, int low, vector<int> &v, int target){
-    int mid = (high+low) / 2;
-    if((low == high && target!= v[low]) || (high == low+1 && target!= v[low] && target!=v[high])){
-        return v.size();
+    //1 2   3   3   3   5   6
+    if(v[0] > target || v[v.size()-1] < target || v.size() == 0) return -1;
+
+    int mid = (low+high) /2;
+
+    if(v[mid] < target) return findlowerbound( high,  mid+1, v,  target);
+    else if(v[mid] > target) return findlowerbound( mid-1,  low, v,  target);
+    else{
+        if(v[mid-1] < target || mid == 0) return mid;
+        else return  findlowerbound( mid-1,  low, v,  target);
     }
-    if(v[mid] < target){
-        low = mid+1;
-        return findlowerbound(high, low, v, target);
-    }
-    if(v[mid] >= target) return mid;
 }
 
 int main(){

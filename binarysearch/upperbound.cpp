@@ -1,25 +1,15 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-int findupperbound(vector<int> &v, int target){
-    if(v.size() ==0) return -1;
-    if(v[v.size()-1]<target) return v.size();
-    int high = v.size()-1;
+int approach(vector<int> &v, int target, int low, int high){
+    if(v.size() == 0 || v[0] > target || v[v.size()-1] < target) return -1;
 
-    while(high!=target){
-        high--;
-    }
-    return high;
-}
-
-int approach2(vector<int> &v, int target, int low, int high){
-    if(v.size() ==0) return -1;
-    if(v[v.size()-1]<target) return v.size();
     int mid = (low+high)/2;
+
     if(v[mid] < target) return approach2(v, target, mid, high);
-    else if(v[mid] < target) return approach2(v, target, low, mid);
+    else if(v[mid] > target) return approach2(v, target, low, mid);
     else{
-        if(v[mid+1] > target) return mid;
+        if(v[mid+1] > target || mid == v.size()-1) return mid;
         else return approach2(v, target, mid, high);
     }
 
@@ -40,6 +30,6 @@ int main(){
     int target;
     cin>>target;
 
-    cout<<"Upperbound: "<<findupperbound(vec, target);
+    cout<<"Upperbound: "<<approach(vec, target, 0, vec.size()-1);
     return 0;
 }
